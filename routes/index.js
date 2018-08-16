@@ -1,9 +1,29 @@
 var express = require('express');
 var router = express.Router();
+var isAuthenticated = require('../middleware/isAuthenticated');
+//var verifyToken = require('../middleware/verifyToken');
+var Student = require('../models/user');
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
+module.exports = function(passport){
 
-module.exports = router;
+  router.get('/', require('./main').get);
+//  router.get('/personalArea/:page', isAuthenticated, require('./personalArea'));
+
+  router.post('/signup', passport.authenticate('signup', {
+    successRedirect: '/personalArea',
+    failureRedirect: '/', 
+    failureFlash : true
+  }));
+  router.post('/login', passport.authenticate('login', {
+    successRedirect: '/personalArea',
+    failureRedirect: '/',
+    failureFlash : true
+  }));
+  router.get('/signout', function(req, res) {
+    req.logout();
+    res.redirect('/');
+  });
+
+
+  return router;
+}
