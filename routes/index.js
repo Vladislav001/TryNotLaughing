@@ -7,11 +7,11 @@ var Student = require('../models/user');
 module.exports = function(passport){
 
   router.get('/', require('./main').get);
-//  router.get('/personalArea/:page', isAuthenticated, require('./personalArea'));
+  router.get('/personalArea', isAuthenticated, require('./personalArea').get);
 
   router.post('/signup', passport.authenticate('signup', {
     successRedirect: '/personalArea',
-    failureRedirect: '/', 
+    failureRedirect: '/',
     failureFlash : true
   }));
   router.post('/login', passport.authenticate('login', {
