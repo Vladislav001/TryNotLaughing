@@ -25,5 +25,8 @@ module.exports = function(passport){
   });
 
 
+  // API
+  //  router.get('/api/v1/informationStudent', require('./api/v1/informationStudent').get);
+
   return router;
 }

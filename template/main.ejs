@@ -5,29 +5,28 @@
 <div class="form-modal">
 
   <div class="form-toggle">
-    <button id="login-toggle" onclick="toggleLogin()">Log in</button>
-    <button id="signup-toggle" onclick="toggleSignup()">Sign up</button>
+    <button id="login-toggle" onclick="toggleLogin()">Авторизация</button>
+    <!-- <button id="signup-toggle" onclick="toggleSignup()">Sign up</button> -->
   </div>
 
   <div id="login-form">
     <form action="/login" method="POST" name="loginForm">
       <!-- почему то везде именно в name надо username -->
-      <input type="email" name="username" placeholder="Enter email"/>
-      <input type="password" name="password" placeholder="Enter password"/>
-      <button type="submit" class="btn login">Login</button>
-      <p onclick="toggleForgotPassword()">Forgotten password?</p>
+      <input type="email" name="username" placeholder="Введите email"/>
+      <input type="password" name="password" placeholder="Введите пароль"/>
+      <button type="submit" class="btn login">Авторизация</button>
+      <!-- <p onclick="toggleForgotPassword()">Forgotten password?</p> -->
       <div class="help-block">
         <span class="error"></span>
       </div>
     </form>
   </div>
 
-  <div id="signup-form">
+  <!-- <div id="signup-form">
     <form action="/signup" method="POST" name="signupForm">
       <input type="email" name="username" placeholder="Enter email"/>
       <input type="password" name="password" placeholder="Create password"/>
       <button type="submit" class="btn signup">Create account</button>
-      <!-- <p>Clicking <strong>create account</strong> means that you are agree to our <a href="javascript:void(0)">terms of services</a>.</p> -->
     </form>
   </div>
 
@@ -39,7 +38,7 @@
         <span class="error"></span>
       </div>
     </form>
-  </div>
+  </div> -->
 
 </div>
 

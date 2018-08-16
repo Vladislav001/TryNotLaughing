@@ -1,0 +1,8 @@
+{
+    "_id": {
+        "$oid": "5b75c102496c582ce89bbc10"
+    },
+    "email": "vvv@mail.ru",
+    "password": "$2a$10$5ZUdRH1xOoz4h6EQJS0KUOjIfFf9/cVcOpAPnb0PF4czJe5v8LSyC",
+    "__v": 0
+}
