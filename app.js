@@ -8,15 +8,18 @@ var dbConfig = require('./config').database;
 var mongoose = require('mongoose');
 
 // Connect to DB
-//mongoose.connect(dbConfig.url);
+mongoose.connect(dbConfig.url, { useNewUrlParser: true });
 
 var index = require('./routes/index');
 var users = require('./routes/users');
 
 var app = express();
 
+// use ejs-locals for all ejs templates:
+app.engine('ejs', require('ejs-locals'));
+
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname, 'template'));
 app.set('view engine', 'ejs');
 
 // uncomment after placing your favicon in /public
@@ -26,6 +29,14 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+// Конфигурация Passport
+var passport = require('passport');
+var expressSession = require('express-session');
+app.use(expressSession({secret: 'mySecretKey'}));
+app.use(passport.initialize());
+app.use(passport.session());
+
 
 app.use('/', index);
 app.use('/users', users);
