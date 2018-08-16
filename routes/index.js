@@ -8,6 +8,7 @@ module.exports = function(passport){
 
   router.get('/', require('./main').get);
   router.get('/personalArea', isAuthenticated, require('./personalArea').get);
+  router.get('/videos', isAuthenticated, require('./videos').get);
 
   router.post('/signup', passport.authenticate('signup', {
     successRedirect: '/personalArea',
