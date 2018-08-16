@@ -24,7 +24,8 @@ module.exports = function(passport){
     res.redirect('/');
   });
 
-
+  router.post('/addNewVideo', require('./addVideo').post);
+  router.post('/deleteVideo/id:idTag', require('./deleteVideo').post);
   // API
   //  router.get('/api/v1/informationStudent', require('./api/v1/informationStudent').get);
 
