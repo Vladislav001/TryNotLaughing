@@ -31,6 +31,7 @@ module.exports = function(passport){
 
   // API
   router.get('/api/v1/getLinksForPreview', require('./api/v1/getlinksforpreview').get);
+  router.post('/api/v1/getLinksforVine', require('./api/v1/getlinksforvine').post);
 
   return router;
 }
