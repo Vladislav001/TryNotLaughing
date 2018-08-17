@@ -2,7 +2,7 @@ const Video = require('../../../models/video');
 
 exports.post = function(req, res) {
   var countRaunds = parseInt(req.body.raunds);
-  var vineVideos = {};
+  var vineVideos = [];
 
   // Получим рандомные Vine видео
   Video.aggregate(
@@ -10,13 +10,13 @@ exports.post = function(req, res) {
       if (err) return res.status(500).send('Error on the server: ' + err);
 
       // Сформируем массив для передачи
-      for (let [key, video] of Object.entries(randomVineVideos)) {
-             vineVideos['Link_' + key] = video.link;
-        }
+      randomVineVideos.forEach(function(element) {
+      vineVideos.push(element.link);
+      });
 
       res.status(200).send(
         {
-          "LinksOnVineVideo": vineVideos,
+        vineVideos
         }
       );
     });

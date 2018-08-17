@@ -10,3 +10,4 @@
 
 api
 1) Получение рандомных видео для превью: GET http://localhost:3000/api/v1/getlinksforpreview
+2) Получение vine роликов, в зависимости от кол-ва раунодов: POST http://localhost:3000/api/v1/getlinksforvine - в body raunds:Кол-во
