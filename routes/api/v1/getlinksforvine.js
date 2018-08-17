@@ -1,7 +1,7 @@
 const Video = require('../../../models/video');
 
 exports.post = function(req, res) {
-  var countRaunds = parseInt(req.body.raunds);
+  var countRaunds = parseInt(req.body.rounds);
   var vineVideos = [];
 
   // Получим рандомные Vine видео
@@ -11,12 +11,12 @@ exports.post = function(req, res) {
 
       // Сформируем массив для передачи
       randomVineVideos.forEach(function(element) {
-      vineVideos.push(element.link);
+        vineVideos.push(element.link);
       });
 
       res.status(200).send(
         {
-        vineVideos
+          vineVideos
         }
       );
     });
