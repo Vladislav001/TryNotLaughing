@@ -7,8 +7,9 @@ var Student = require('../models/user');
 module.exports = function(passport){
 
   router.get('/', require('./main').get);
-  router.get('/personalArea', isAuthenticated, require('./personalArea').get);
+  router.get('/personalArea', isAuthenticated, require('./personalarea').get);
   router.get('/videos', isAuthenticated, require('./videos').get);
+  router.get('/statistics', isAuthenticated, require('./statistics').get);
 
   router.post('/signup', passport.authenticate('signup', {
     successRedirect: '/personalArea',
@@ -27,8 +28,9 @@ module.exports = function(passport){
 
   router.post('/addNewVideo', require('./addVideo').post);
   router.post('/deleteVideo/id:idTag', require('./deleteVideo').post);
+
   // API
-  //  router.get('/api/v1/informationStudent', require('./api/v1/informationStudent').get);
+  router.get('/api/v1/getLinkForPreview', require('./api/v1/getlinkforpreview').get);
 
   return router;
 }
