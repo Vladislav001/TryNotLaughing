@@ -6,3 +6,7 @@
     "password": "$2a$10$5ZUdRH1xOoz4h6EQJS0KUOjIfFf9/cVcOpAPnb0PF4czJe5v8LSyC",
     "__v": 0
 }
+
+
+api
+1) Получение рандомных видео для превью: GET http://localhost:3000/api/v1/getlinksforpreview

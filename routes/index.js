@@ -1,8 +1,8 @@
-var express = require('express');
-var router = express.Router();
-var isAuthenticated = require('../middleware/isAuthenticated');
-//var verifyToken = require('../middleware/verifyToken');
-var Student = require('../models/user');
+const express = require('express');
+const router = express.Router();
+const isAuthenticated = require('../middleware/isAuthenticated');
+//const verifyToken = require('../middleware/verifyToken');
+const Student = require('../models/user');
 
 module.exports = function(passport){
 
@@ -30,7 +30,7 @@ module.exports = function(passport){
   router.post('/deleteVideo/id:idTag', require('./deleteVideo').post);
 
   // API
-  router.get('/api/v1/getLinkForPreview', require('./api/v1/getlinkforpreview').get);
+  router.get('/api/v1/getLinksForPreview', require('./api/v1/getlinksforpreview').get);
 
   return router;
 }

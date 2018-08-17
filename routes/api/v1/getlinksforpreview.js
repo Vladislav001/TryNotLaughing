@@ -1,5 +1,4 @@
-var Video = require('../../../models/video');
-var express = require('express');
+const Video = require('../../../models/video');
 
 exports.get = function(req, res) {
   // Получим рандомное Vine видео

@@ -1,5 +1,4 @@
-var Video = require('../models/video');
-var express = require('express');
+const Video = require('../models/video');
 
 exports.post = function(req, res) {
   Video.remove({ _id: req.params.idTag }, function (err) {

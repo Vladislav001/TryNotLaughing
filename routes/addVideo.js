@@ -1,5 +1,4 @@
-var Video = require('../models/video');
-var express = require('express');
+const Video = require('../models/video');
 
 exports.post = function(req, res, done) {
 
@@ -15,7 +14,7 @@ exports.post = function(req, res, done) {
       res.json('Видео с такой ссылкой уже существует: ' + req.body.link);
     } else {
       var newVideo = new Video();
- 
+
       newVideo.link = req.body.link;
       newVideo.time = req.body.time;
       newVideo.category = req.body.category;

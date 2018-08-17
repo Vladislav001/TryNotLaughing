@@ -11,9 +11,6 @@ var mongoose = require('mongoose');
 // Connect to DB
 mongoose.connect(dbConfig.url, { useNewUrlParser: true });
 
-var index = require('./routes/index');
-var users = require('./routes/users');
-
 var app = express();
 
 // use ejs-locals for all ejs templates:
