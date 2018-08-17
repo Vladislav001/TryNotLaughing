@@ -5,12 +5,16 @@ var videoSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    category: {
+      type: String,
+      required: true
+    },
     time: {
         type: String,
         required: true
     },
 });
- 
+
 videoSchema.virtual('videoId').get(function(){
     return this._id;
 });

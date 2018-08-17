@@ -1,24 +1,27 @@
-jQuery(document).ready(function(){
+function toggleSignup(){
+   document.getElementById("login-toggle").style.backgroundColor="#fff";
+    document.getElementById("login-toggle").style.color="#222";
+    document.getElementById("signup-toggle").style.backgroundColor="#279BE4";
+    document.getElementById("signup-toggle").style.color="#fff";
+    document.getElementById("login-form").style.display="none";
+    document.getElementById("signup-form").style.display="block";
+    document.getElementById("forgotPassword-form").style.display="none";
+}
 
+function toggleLogin(){
+    document.getElementById("login-toggle").style.backgroundColor="#279BE4";
+    document.getElementById("login-toggle").style.color="#fff";
+    document.getElementById("signup-toggle").style.backgroundColor="#fff";
+    document.getElementById("signup-toggle").style.color="#222";
+    document.getElementById("signup-form").style.display="none";
+    document.getElementById("login-form").style.display="block";
+    document.getElementById("forgotPassword-form").style.display="none";
+}
 
-	// Show password Button
-	$("#showpassword").on('click', function(){
-
-		var pass = $("#password");
-		var fieldtype = pass.attr('type');
-		if (fieldtype == 'password') {
-			pass.attr('type', 'text');
-			$(this).text("Hide Password");
-		}else{
-			pass.attr('type', 'password');
-			$(this).text("Show Password");
-		}
-
-
-	});
-
-
-
-
-
-});
+function toggleForgotPassword(){
+    document.getElementById("login-toggle").style.backgroundColor="#fff";
+    document.getElementById("login-toggle").style.color="#222";
+    document.getElementById("signup-form").style.display="none";
+    document.getElementById("login-form").style.display="none";
+    document.getElementById("forgotPassword-form").style.display="block";
+}

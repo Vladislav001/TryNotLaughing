@@ -15,9 +15,10 @@ exports.post = function(req, res, done) {
       res.json('Видео с такой ссылкой уже существует: ' + req.body.link);
     } else {
       var newVideo = new Video();
-
+ 
       newVideo.link = req.body.link;
       newVideo.time = req.body.time;
+      newVideo.category = req.body.category;
 
       // save the video
       newVideo.save(function(err) {

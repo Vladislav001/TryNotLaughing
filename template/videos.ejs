@@ -8,11 +8,18 @@
   <form action="/addNewVideo" method="POST" name="addNewVideoForm">
     <div class="form-group">
       <label for="linkOnVideo">Ссылка на ролик</label>
-      <input type="text" name="link" class="form-control" id="linkOnVideo" placeholder="Ссылка на ролик">
+      <input type="text" name="link" class="form-control" id="linkOnVideo" placeholder="Ссылка на ролик" required>
+    </div>
+    <label for="categoryVideo">Категория</label>
+    <div class="form-group">
+      <select class="form-control" id="categoryVideo" name="category" required>
+        <option>Vine</option>
+        <option>Длинный</option>
+      </select>
     </div>
     <div class="form-group">
       <label for="timeVideo">Длительность ролика</label>
-      <input type="text" name="time" class="form-control" id="timeVideo" placeholder="Длительность ролика">
+      <input class="form-control" type="time" name="time" value="00:00:00" id="timeVideo" placeholder="Длительность ролика">
     </div>
     <button type="submit" class="btn btn-primary">Добавить</button>
     <div class="help-block">
@@ -30,80 +37,81 @@
         <th scope="col">Ссылка</th>
         <th scope="col">Длительность</th>
         <th scope="col">Категория</th>
-       <th class="empty"></th>
+        <th class="empty"></th>
       </tr>
     </thead>
-      <% for (var i=0; i< videos.length; i++) { %>
-    <tbody>
-      <tr>
-        <th scope="row"><%=i+1%></th>
-        <td><%=videos[i].link%></td>
-        <td><%=videos[i].time%></td>
-        <td></td>
-        <form action="/deleteVideo/id<%=videos[i].id%>" method="POST" name="deleteVideoForm">
-        <td class="delete"><button class="delete-buttons" onclick="return confirmDelete();">Удалить</button></td>
-        </form>
-      </tr>
-    </tbody>
-          <% } %>
-  </table>
-</div>
+    <% for (var i=0; i< videos.length; i++) { %>
+      <tbody>
+        <tr>
+          <th scope="row"><%=i+1%></th>
+          <td><a href="<%=videos[i].link%>" target="_blank"><%=videos[i].link%></a></td>
+          <td><%=videos[i].time%></td>
+          <td><%=videos[i].category%></td>
+          <form action="/deleteVideo/id<%=videos[i].id%>" method="POST" name="deleteVideoForm">
+            <td class="delete"><button class="delete-buttons" onclick="return confirmDelete();">Удалить</button></td>
+          </form>
+        </tr>
+      </tbody>
+      <% } %>
+    </table>
+  </div>
 
 
-<script>
-var form = $('form[name="addNewVideoForm"]');
+  <script>
+  var form = $('form[name="addNewVideoForm"]');
 
-form.submit(function(e) {
-  e.preventDefault();
-  var link = $("input[name='link']").val();
-  var time = $("input[name='time']").val();
+  form.submit(function(e) {
+    e.preventDefault();
+    var link = $("input[name='link']").val();
+    var time = $("input[name='time']").val();
+    var category = $("select[name='category']").val();
 
-  $.ajax({
-    type: "POST",
-    url: "/addNewVideo",
-    data: JSON.stringify({link: link, time: time}),
-    dataType: "json",
-    contentType: "application/json",
-    statusCode:{
-      200: function(){
-        form.trigger('reset'); // очистить поля формы
-        $('.error', form).html('');
-        window.location.reload(); // после AJAX пагинации убрать, т.к надо отрисовывать еще при добавлении
-      },
-      403: function(){
-        $('.error', form).html('Видео с такой ссылкой уже существует: ' + link);
+    $.ajax({
+      type: "POST",
+      url: "/addNewVideo",
+      data: JSON.stringify({link: link, time: time, category:category}),
+      dataType: "json",
+      contentType: "application/json",
+      statusCode:{
+        200: function(){
+          form.trigger('reset'); // очистить поля формы
+          $('.error', form).html('');
+          window.location.reload(); // после AJAX пагинации убрать, т.к надо отрисовывать еще при добавлении
+        },
+        403: function(){
+          $('.error', form).html('Видео с такой ссылкой уже существует: ' + link);
+        }
       }
-    }
+    });
   });
-});
 </script>
 
 <!-- <script>
 var form = $('form[name="deleteVideoForm"]');
 
 form.submit(function(e) {
-  e.preventDefault();
-  var link = $("input[name='link']").val();
-  var time = $("input[name='time']").val();
+e.preventDefault();
+var link = $("input[name='link']").val();
+var time = $("input[name='time']").val();
 
-  $.ajax({
-    type: "POST",
-    url: "/deleteVideo/id:idTag"
-    data: JSON.stringify({link: link, time: time}),
-    dataType: "json",
-    contentType: "application/json",
-    statusCode:{
-      200: function(){
-        form.trigger('reset'); // очистить поля формы
-        $('.error', form).html('');
-        window.location.reload(); // после AJAX пагинации убрать, т.к надо отрисовывать еще при добавлении
-      },
-      403: function(){
-        $('.error', form).html('Видео с такой ссылкой уже существует: ' + link);
-      }
-    }
-  });
+$.ajax({
+type: "POST",
+url: "/deleteVideo/id:idTag"
+data: JSON.stringify({link: link, time: time}),
+dataType: "json",
+contentType: "application/json",
+statusCode:{
+200: function(){
+form.trigger('reset'); // очистить поля формы
+$('.error', form).html('');
+window.location.reload(); // после AJAX пагинации убрать, т.к надо отрисовывать еще при добавлении
+},
+403: function(){
+$('.error', form).html('Видео с такой ссылкой уже существует: ' + link);
+}
+}
+});
 });
 </script> -->
 
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
