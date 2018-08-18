@@ -35,7 +35,7 @@ module.exports = function(passport){
   router.get('/api/v1/getLinksForPreview', require('./api/v1/getlinksforpreview').get);
   router.post('/api/v1/getLinksforVine', require('./api/v1/getlinksforvine').post);
   router.post('/api/v1/getLinksforLong', require('./api/v1/getlinksforlong').post);
-  //router.post('/api/v1/postStatistics', require('./api/v1/poststatistics').post);
+  router.post('/api/v1/postStatistics', require('./api/v1/poststatistics').post);
   router.post('/api/v1/postRecall', require('./api/v1/postrecall').post);
 
   return router;
