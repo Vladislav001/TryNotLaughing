@@ -1,0 +1,59 @@
+<!-- <link rel='stylesheet' href='/css/recall.css' /> -->
+<% layout('layout/pattern') -%>
+
+<div class="container" style="width:1000px; margin-top:50px">
+  <h3 style="text-align:center">Все отзывы</h3>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">№</th>
+        <th scope="col">Рейтинг</th>
+        <th scope="col">Комментарий</th>
+        <th class="empty"></th>
+      </tr>
+    </thead>
+    <% for (var i=0; i< recalls.length; i++) { %>
+      <tbody>
+        <tr>
+          <td><%=i+1%></td>
+          <td><%=recalls[i].rating%></a></td>
+          <td><%=recalls[i].comment%></td>
+          <form action="/deleteRecall/id<%=recalls[i].id%>" method="POST" name="deleteRecallForm">
+            <td class="delete"><button class="delete-buttons" onclick="return confirmDelete();">Delete</button></td>
+          </form>
+        </tr>
+      </tbody>
+      <% } %>
+    </table>
+  </div>
+
+  <% if (pages > 0) { %>
+    <nav aria-label="Page navigation example" >
+      <ul class="pagination justify-content-center" >
+        <% if (current == 1) { %>
+          <li class="page-item disabled"><span class="page-link">Первая</span></li>
+          <% } else { %>
+            <li class="page-item"><a class="page-link" href="/recall/1">Первая</a></li>
+            <% } %>
+            <% var i = (Number(current) > 5 ? Number(current) - 4 : 1) %>
+            <% if (i !== 1) { %>
+              <li class="page-item disabled"><a class="page-link">...</a></li>
+              <% } %>
+              <% for (; i <= (Number(current) + 4) && i <= pages; i++) { %>
+                <% if (i == current) { %>
+                  <li class="page-item active"> <span class="page-link"><%= i %></span></li>
+                  <% } else { %>
+                    <li class="page-item"><a class="page-link" href="/recall/<%= i %>"><%= i %></a></li>
+                    <% } %>
+                    <% if (i == Number(current) + 4 && i < pages) { %>
+                      <li class="page-item disabled"><a class="page-link">...</a></li>
+                      <% } %>
+                      <% } %>
+                      <% if (current == pages) { %>
+                        <li class="page-item disabled"><span class="page-link">Последняя</span></li>
+                        <% } else { %>
+                          <li class="page-item"><a class="page-link" href="/recall/<%= pages %>">Последняя</a></li>
+                          <% } %>
+                        </ul>
+                      </nav>
+                      <% } %>
