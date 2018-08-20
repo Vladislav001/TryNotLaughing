@@ -5,44 +5,20 @@ exports.post = function(req, res) {
   var timeVideos = 0;
   var longVideos = [];
 
-  var timeVideos = Number(0);
-
-//   getTime(Video, function(timeV) {
-//   console.log(timeV + ' callback') ;
-//   timeVideos += timeV;
-//   console.log(timeVideos + ' callback') ;
-// });
-
-getTime(0, totalTime, function(timeV) {
+  getVideos(0, totalTime, longVideos, function(timeV) {
     console.log(timeV + " finished") ;
+    res.status(200).send(
+      {
+        longVideos
+      }
+    );
   }
 );
 
-
-
-
-// Получим рандомные Long видео
-// Video.aggregate(
-//   [ { $match: { category: 'Long' } }, { $sample: { size: 1 } }] , function (err, randomLongVideos) {
-//     if (err) return res.status(500).send('Error on the server: ' + err);
-//
-//     // Наберем массив роликов, с общей продолжительностью равной заданной
-//     // Сформируем массив для передачи
-//     // randomLongVideos.forEach(function(element) {
-//     //   longVideos.push(element.link);
-//     // });
-//
-//
-//
-//     res.status(200).send(
-//       {
-//         longVideos
-//       }
-//     );
-//
-//   });
 }
-function getTime(currentTimeVideo, totalTimeVideo, callback) {
+
+// Получим массив роликов с общим временем ">=" заданному пользователем
+function getVideos(currentTimeVideo, totalTimeVideo, longVideos, callback) {
   Video.aggregate(
     [ { $match: { category: 'Long' } }, { $sample: { size: 1 } }] ,
     function (err, randomLongVideos) {
@@ -52,17 +28,14 @@ function getTime(currentTimeVideo, totalTimeVideo, callback) {
       timeVideo = randomLongVideos[0].time;
       currentTimeVideo += timeVideo
 
-      console.log( randomLongVideos[0].link + ' link') ;
-      console.log( randomLongVideos[0].time + ' time') ;
+      if(longVideos.indexOf(randomLongVideos[0].link) == -1) {
+        longVideos.push(randomLongVideos[0].link);
+      }
 
       if (currentTimeVideo >= totalTimeVideo) {
-
-          console.log(currentTimeVideo + ' currentTimeVideo') ;
-          console.log(totalTimeVideo + ' totalTimeVideo') ;
-          callback(currentTimeVideo);
-
+        callback(currentTimeVideo);
       } else {
-        getTime(currentTimeVideo, totalTimeVideo, callback);
+        getVideos(currentTimeVideo, totalTimeVideo, longVideos, callback);
       }
 
     });
