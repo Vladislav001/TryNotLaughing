@@ -45,7 +45,7 @@
           <td><%=videos[i].time%></td>
           <td><%=videos[i].category%></td>
           <form action="/deleteVideo/id<%=videos[i].id%>" method="POST" name="deleteVideoForm">
-            <td class="delete"><button class="delete-buttons" onclick="return confirmDelete();">Удалить</button></td>
+            <td class="delete"><button class="btn btn-danger">Удалить</button></td>
           </form>
         </tr>
       </tbody>

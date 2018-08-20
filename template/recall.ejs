@@ -19,7 +19,7 @@
           <td><%=recalls[i].rating%></a></td>
           <td><%=recalls[i].comment%></td>
           <form action="/deleteRecall/id<%=recalls[i].id%>" method="POST" name="deleteRecallForm">
-            <td class="delete"><button class="delete-buttons" onclick="return confirmDelete();">Delete</button></td>
+            <td class="delete"><button class="btn btn-danger">Удалить</button></td>
           </form>
         </tr>
       </tbody>
