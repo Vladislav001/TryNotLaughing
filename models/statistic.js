@@ -5,6 +5,10 @@ var statisticSchema = mongoose.Schema({
     type: String,
     required: true
   },
+  videos: {
+    type: Array,
+    required: true
+  },
   // link_video: {
   //   type: String,
   //   required: false
