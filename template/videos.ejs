@@ -88,23 +88,22 @@ var form = $('form[name="deleteVideoForm"]');
 
 form.submit(function(e) {
 e.preventDefault();
-var link = $("input[name='link']").val();
-var time = $("input[name='time']").val();
 
+console.log(form);
+alert(form);
 $.ajax({
 type: "POST",
 url: "/deleteVideo/id:idTag"
-data: JSON.stringify({link: link, time: time}),
+data: JSON.stringify({idTag: idTag}),
 dataType: "json",
 contentType: "application/json",
 statusCode:{
 200: function(){
-form.trigger('reset'); // очистить поля формы
 $('.error', form).html('');
 window.location.reload(); // после AJAX пагинации убрать, т.к надо отрисовывать еще при добавлении
 },
 403: function(){
-$('.error', form).html('Видео с такой ссылкой уже существует: ' + link);
+$('.error', form).html('Видео с такой ссылкой уже существует: ' + idTag);
 }
 }
 });

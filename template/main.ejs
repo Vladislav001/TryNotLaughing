@@ -1,5 +1,19 @@
 <link rel="stylesheet" href="css/main.css">
 
+<!-- <form action="/login" method="POST" name="loginForm">
+<div class="form-group">
+  <label for="email">Email address:</label>
+  <input type="email" class="form-control" name="username" id="email" placeholder="Введите email"/>
+</div>
+<div class="form-group">
+  <label for="password">Password:</label>
+  <input type="password" class="form-control" name="password" id="password" placeholder="Введите пароль"/>
+</div>
+<button type="submit" class="btn btn-primary">Авторизация</button>
+</form>  -->
+
+
+<div class="container">
 <div class="form-modal">
 
   <div class="form-toggle">
@@ -9,7 +23,6 @@
 
   <div id="login-form">
     <form action="/login" method="POST" name="loginForm">
-      <!-- почему то везде именно в name надо username -->
       <input type="email" name="username" placeholder="Введите email"/>
       <input type="password" name="password" placeholder="Введите пароль"/>
       <button type="submit" class="btn login">Авторизация</button>
@@ -26,18 +39,8 @@
       <input type="password" name="password" placeholder="Create password"/>
       <button type="submit" class="btn signup">Create account</button>
     </form>
-  </div>
-
-  <div id="forgotPassword-form">
-    <form action="/forgot" method="POST" name="restorePasswordForm">
-      <input type="email" name="email" placeholder="Enter email"/>
-      <button type="submit" class="btn restorePassword">Restore password</button>
-      <div class="help-block">
-        <span class="error"></span>
-      </div>
-    </form>
   </div> -->
-
+</div>
 </div>
 
 <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js'></script>
