@@ -1,2 +1,33 @@
 <!-- <link rel='stylesheet' href='/css/statistics.css' /> -->
 <% layout('layout/pattern') -%>
+
+
+<div class="container" style="width:1000px; margin-top:50px">
+  <h3 style="text-align:center">Статистика по роликам</h3>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">№</th>
+        <th scope="col">Категория</th>
+        <th scope="col">Видео</th>
+        <th scope="col">Засмеялся игрок 1</th>
+        <th scope="col">Засмеялся игрок 2</th>
+        <th scope="col">Всего засмеялись</th>
+      </tr>
+    </thead>
+    <% for (var i=0; i< statistics.length; i++) { %>
+      <% for (var j=0; j< statistics[i].videos.length; j++) { %>
+        <tbody>
+          <tr>
+            <th scope="row" rowspan="<%=statistics[i].videos.length%>"><%=i+1%></th>
+            <td><%=statistics[i].type_game%></td>
+            <td><a href="<%=statistics[i].videos[j].link%>" target="_blank"><%=statistics[i].videos[j].link%></a></td>
+            <td><%=statistics[i].videos[j].countPlayer1%></td>
+            <td><%=statistics[i].videos[j].countPlayer2%></td>
+            <td><%=statistics[i].videos[j].countPlayer1 + statistics[i].videos[j].countPlayer2%></td>
+          </tr>
+        </tbody>
+          <% } %>
+        <% } %>
+      </table>
+    </div>
