@@ -34,11 +34,11 @@ module.exports = function(passport){
   router.post('/deleteRecall/id:idTag', require('./deleteRecall').post);
 
   // API
-  router.get('/api/v1/getLinksForPreview', require('./api/v1/getlinksforpreview').get);
-  router.post('/api/v1/getLinksforVine', require('./api/v1/getlinksforvine').post);
-  router.post('/api/v1/getLinksforLong', require('./api/v1/getlinksforlong').post);
-  router.post('/api/v1/postStatistics', require('./api/v1/poststatistics').post);
-  router.post('/api/v1/postRecall', require('./api/v1/postrecall').post);
+  router.get('/api/v1/preview/links', require('./api/v1/getlinksforpreview').get);
+  router.post('/api/v1/links/vine', require('./api/v1/getlinksforvine').post);
+  router.post('/api/v1/links/long', require('./api/v1/getlinksforlong').post);
+  router.post('/api/v1/statistic', require('./api/v1/poststatistics').post);
+  router.post('/api/v1/recall', require('./api/v1/postrecall').post);
 
   return router;
 }
