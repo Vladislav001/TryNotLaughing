@@ -4,8 +4,12 @@
 <div class="container" style="width:700px;">
   <form action="/addNewVideo" method="POST" name="addNewVideoForm">
     <div class="form-group">
-      <label for="linkOnVideo">Ссылка на ролик</label>
-      <input type="text" name="link" class="form-control" id="linkOnVideo" placeholder="Ссылка на ролик" required>
+      <label for="linkOnVideo_720">Ссылка на ролик (720)</label>
+      <input type="text" name="link_720" class="form-control" id="linkOnVideo_720" placeholder="Ссылка на ролик" >
+    </div>
+    <div class="form-group">
+      <label for="linkOnVideo_240">Ссылка на ролик (240)</label>
+      <input type="text" name="link_240" class="form-control" id="linkOnVideo_240" placeholder="Ссылка на ролик">
     </div>
     <label for="categoryVideo">Категория</label>
     <div class="form-group">
@@ -31,7 +35,8 @@
     <thead>
       <tr>
         <th scope="col">№</th>
-        <th scope="col">Ссылка</th>
+        <th scope="col">Ссылка (720)</th>
+        <th scope="col">Ссылка (240)</th>
         <th scope="col">Длительность</th>
         <th scope="col">Категория</th>
         <th class="empty"></th>
@@ -41,7 +46,8 @@
       <tbody>
         <tr>
           <th scope="row"><%=i+1%></th>
-          <td><a href="<%=videos[i].link%>" target="_blank"><%=videos[i].link%></a></td>
+          <td><a href="<%=videos[i].link_720%>" target="_blank"><%=videos[i].link_720%></a></td>
+          <td><a href="<%=videos[i].link_240%>" target="_blank"><%=videos[i].link_240%></a></td>
           <td><%=videos[i].time%></td>
           <td><%=videos[i].category%></td>
           <form action="/deleteVideo/id<%=videos[i].id%>" method="POST" name="deleteVideoForm">
@@ -59,14 +65,15 @@
 
   form.submit(function(e) {
     e.preventDefault();
-    var link = $("input[name='link']").val();
+    var link_720 = $("input[name='link_720']").val();
+    var link_240 = $("input[name='link_240']").val();
     var time = $("input[name='time']").val();
     var category = $("select[name='category']").val();
 
     $.ajax({
       type: "POST",
       url: "/addNewVideo",
-      data: JSON.stringify({link: link, time: time, category:category}),
+      data: JSON.stringify({link_720: link_720, link_240: link_240, time: time, category:category}),
       dataType: "json",
       contentType: "application/json",
       statusCode:{

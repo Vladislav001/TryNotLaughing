@@ -2,7 +2,7 @@ const Video = require('../models/video');
 
 exports.post = function(req, res, done) {
 
-  Video.findOne({ 'link' : req.body.link }, function(err, video) {
+  Video.findOne({ 'link_720' : req.body.link_720, 'link_240' : req.body.link_240 }, function(err, video) {
     // In case of any error, return using the done method
     if (err){
       console.log('Ошибка при добавлении видео: '+ err);
@@ -11,11 +11,19 @@ exports.post = function(req, res, done) {
     // already exists
     if (video) {
       return res.sendStatus(403);
-      res.json('Видео с такой ссылкой уже существует: ' + req.body.link);
+      res.json('Видео с такой ссылкой уже существует: ' + req.body.link_720 + '' + req.body.link_240);
     } else {
       var newVideo = new Video();
 
-      newVideo.link = req.body.link;
+      if( req.body.link_720.length > 0)
+      {
+          newVideo.link_720 = req.body.link_720;
+      }
+      if( req.body.link_240.length > 0)
+      {
+          newVideo.link_240 = req.body.link_240;
+      }
+
       newVideo.time = req.body.time;
       newVideo.category = req.body.category;
 

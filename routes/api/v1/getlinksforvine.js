@@ -11,7 +11,7 @@ exports.post = function(req, res) {
 
       // Сформируем массив для передачи
       randomVineVideos.forEach(function(element) {
-        vineVideos.push(element.link);
+        vineVideos.push(element.link_720);
       });
 
       res.status(200).send(

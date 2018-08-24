@@ -28,8 +28,8 @@ function getVideos(currentTimeVideo, totalTimeVideo, longVideos, callback) {
       timeVideo = randomLongVideos[0].time;
       currentTimeVideo += timeVideo
 
-      if(longVideos.indexOf(randomLongVideos[0].link) == -1) {
-        longVideos.push(randomLongVideos[0].link);
+      if(longVideos.indexOf(randomLongVideos[0].link_720) == -1) {
+        longVideos.push(randomLongVideos[0].link_720);
       }
 
       if (currentTimeVideo >= totalTimeVideo) {

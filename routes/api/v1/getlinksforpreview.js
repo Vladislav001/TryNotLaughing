@@ -13,8 +13,8 @@ exports.get = function(req, res) {
           if( randomPrevVineVideo.length > 0 && randomPrevLongVideo.length > 0 ) {
             res.status(200).send(
               {
-                "LinkOnVineVideo": randomPrevVineVideo[0].link,
-                "LinkOnLongVideo": randomPrevLongVideo[0].link
+                "LinkOnVineVideo": randomPrevVineVideo[0].link_240,
+                "LinkOnLongVideo": randomPrevLongVideo[0].link_240
               }
             );
           } else {

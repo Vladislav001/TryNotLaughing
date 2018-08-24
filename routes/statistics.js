@@ -14,7 +14,6 @@ exports.get = function(req, res) {
 
       for (var j = 0; j < statistics[i].videos.length; j++) {
       //  console.log(statistics[i].id[j].link + ' statistics[i].videos[j].link');
-
         statisticsVideos[statistics[i].id][statistics[i].videos[j].link] = []; // категория => ссылка
 
         statisticsVideos[statistics[i].id][statistics[i].videos[j].link]["TYPE_GAME"] = statistics[i].type_game;
