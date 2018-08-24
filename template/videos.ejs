@@ -20,7 +20,7 @@
     </div>
     <div class="form-group">
       <label for="timeVideo">Длительность ролика (учитываются только минуты: если ролик 3:45, то писать 3)</label>
-      <input class="form-control" type="number" name="time" id="timeVideo" placeholder="Длительность ролика">
+      <input class="form-control" type="number" name="time" id="timeVideo" placeholder="Длительность ролика" required>
     </div>
     <button type="submit" class="btn btn-primary">Добавить</button>
     <div class="help-block">
@@ -46,8 +46,16 @@
       <tbody>
         <tr>
           <th scope="row"><%=i+1%></th>
-          <td><a href="<%=videos[i].link_720%>" target="_blank"><%=videos[i].link_720%></a></td>
-          <td><a href="<%=videos[i].link_240%>" target="_blank"><%=videos[i].link_240%></a></td>
+          <td>
+               <% if (videos[i].link_720 != undefined) { %>
+                 <a href="<%=videos[i].link_720%>" target="_blank"><%=videos[i].link_720%></a>
+              <% } %>
+               </td>
+          <td>
+              <% if (videos[i].link_240 != undefined) { %>
+            <a href="<%=videos[i].link_240%>" target="_blank"><%=videos[i].link_240%></a>
+              <% } %>
+          </td>
           <td><%=videos[i].time%></td>
           <td><%=videos[i].category%></td>
           <form action="/deleteVideo/id<%=videos[i].id%>" method="POST" name="deleteVideoForm">
@@ -70,6 +78,11 @@
     var time = $("input[name='time']").val();
     var category = $("select[name='category']").val();
 
+    if(link_720.length == 0 && link_240.length == 0) {
+      alert("Нужно заполнить хотя бы 1 ссылку");
+      return 0;
+    }
+
     $.ajax({
       type: "POST",
       url: "/addNewVideo",
@@ -83,7 +96,7 @@
           window.location.reload(); // после AJAX пагинации убрать, т.к надо отрисовывать еще при добавлении
         },
         403: function(){
-          $('.error', form).html('Видео с такой ссылкой уже существует: ' + link);
+          $('.error', form).html('Видео с такой ссылкой уже существует: Ролик 720: ' + link_720 + '; Ролик 240: ' + link_240);
         }
       }
     });
